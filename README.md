@@ -40,4 +40,9 @@ flutter packages pub run --no-sound-null-safety build_runner build
 ## Screenshots
 
 <p>
+ <img src="/Sample/Screenshot_2021-10-02-14-59-16-504_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
+ <img src="Sample/Screenshot_2021-10-02-14-59-24-611_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
+ <img src="Sample/Screenshot_2021-10-02-19-30-36-109_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
+ <img src="Sample/Screenshot_2021-10-02-19-30-49-592_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
+ <img src="Sample/Screenshot_2021-10-02-19-30-57-071_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
 </p>
