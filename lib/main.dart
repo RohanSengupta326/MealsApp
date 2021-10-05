@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_proj5meal/screens/meal_details_screen.dart';
 
+import 'package:flutter_proj5meal/screens/meal_details_screen.dart';
+import '../screens/tabs_screen.dart';
 import '../screens/category_meals_screen.dart';
-import '../screens/categories_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,14 +31,17 @@ class MyApp extends StatelessWidget {
               bodyText2: TextStyle(
                 color: Color.fromRGBO(20, 51, 51, 1),
               ),
-              headline1: TextStyle(fontSize: 24, fontFamily: 'RobotoCondensed', fontWeight: FontWeight.bold),
+              headline1: TextStyle(
+                  fontSize: 24,
+                  fontFamily: 'RobotoCondensed',
+                  fontWeight: FontWeight.bold),
             ),
       ).copyWith(
         // new way to add accentColor
         colorScheme: theme.colorScheme.copyWith(secondary: Colors.white),
       ),
 
-      home: CategoriesScreen(),
+      home: TabsScreen(),
       // this is how you show a different screen
 
       routes: {
