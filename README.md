@@ -38,11 +38,11 @@ flutter packages pub run --no-sound-null-safety build_runner build
 ```
 
 ## Screenshots
-
 <p>
- <img src="/Sample/Screenshot_2021-10-02-14-59-16-504_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
- <img src="Sample/Screenshot_2021-10-02-14-59-24-611_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
- <img src="Sample/Screenshot_2021-10-02-19-30-36-109_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
- <img src="Sample/Screenshot_2021-10-02-19-30-49-592_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
- <img src="Sample/Screenshot_2021-10-02-19-30-57-071_com.example.flutter_proj5meal.jpg" alt="Splash View" width="200">
+<img src="https://user-images.githubusercontent.com/64458868/135968620-8fe79001-dbac-4c92-af48-62572086a24d.jpg" alt="Splash View" width="200">
+<img src="https://user-images.githubusercontent.com/64458868/135968629-8cd09c81-ed1e-41b3-ba9f-1c383183b545.jpg" alt="Splash View" width="200">
+<img src="https://user-images.githubusercontent.com/64458868/135968631-ecb0bb1d-5ba8-40ef-8bb5-694ecc75f4d2.jpg" alt="Splash View" width="200">
+<img src="https://user-images.githubusercontent.com/64458868/135968632-8c239d21-9b7c-4b54-86b1-aa03749622c3.jpg" alt="Splash View" width="200">
+<img src="https://user-images.githubusercontent.com/64458868/135968633-4cbe61eb-8720-49c1-b774-5d0d50537403.jpg" alt="Splash View" width="200">
 </p>
+
