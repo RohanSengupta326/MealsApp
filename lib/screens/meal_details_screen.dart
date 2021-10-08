@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../dummy_data.dart';
+import '../models/meal.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({Key? key}) : super(key: key);
-
   static const routeName = 'meal-details';
+
+  final Function addremoveFav;
+  final Function favOrNot;
+
+  MealDetailScreen(this.addremoveFav, this.favOrNot);
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +111,13 @@ class MealDetailScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => addremoveFav(Id),
+        child: Icon(
+          favOrNot(Id) ? Icons.star : Icons.star_border,
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
     );
   }

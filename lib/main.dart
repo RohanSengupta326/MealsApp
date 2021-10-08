@@ -5,12 +5,69 @@ import '../screens/filters_screen.dart';
 import '../screens/meal_details_screen.dart';
 import '../screens/tabs_screen.dart';
 import '../screens/category_meals_screen.dart';
+import 'dummy_data.dart';
+import '../models/meal.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+
+  List<Meal> _availableMeals = dummyMeals;
+  List<Meal> _favoriteMeals = [];
+
+  void _setFilters(Map<String, bool> filtered) {
+    setState(() {
+      _filters = filtered;
+
+      _availableMeals = dummyMeals.where((meal) {
+        if (_filters['gluten'] == true && !meal.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose'] == true && !meal.isLactoseFree) {
+          return false;
+        }
+        if (_filters['vegan'] == true && !meal.isVegan) {
+          return false;
+        }
+        if (_filters['vegetarian'] == true && !meal.isVegetarian) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
+
+  void _addFavorite(String id) {
+    final favIndex = _favoriteMeals.indexWhere((meal) => meal.id == id);
+    if (favIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(favIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteMeals
+            .add(dummyMeals.firstWhere((element) => element.id == id));
+      });
+    }
+  }
+
+  bool _isFavorite(String id) {
+    return _favoriteMeals.any((element) => element.id == id);
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData();
@@ -42,16 +99,18 @@ class MyApp extends StatelessWidget {
         colorScheme: theme.colorScheme.copyWith(secondary: Colors.white),
       ),
 
-      home: TabsScreen(),
       // this is how you show a different screen
-
+      initialRoute: '/',
       routes: {
         /* '/category-meals' : (ctx) => CategoryMealsScreen(), */
         //or,
-        TabsScreen.routename: (ctx) => TabsScreen(),
-        CategoryMealsScreen.routes: (ctx) => CategoryMealsScreen(),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
-        FiltersScreen.routeName: (ctx) => FiltersScreen(),
+        '/': (ctx) => TabsScreen(_favoriteMeals),
+
+        CategoryMealsScreen.routes: (ctx) =>
+            CategoryMealsScreen(_availableMeals),
+        MealDetailScreen.routeName: (ctx) =>
+            MealDetailScreen(_addFavorite, _isFavorite),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilters),
       },
       // adding routes
 

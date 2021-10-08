@@ -58,28 +58,39 @@ import 'package:flutter/material.dart';
 import './categories_screen.dart';
 import './favorites_screen.dart';
 import '../widgets/main_drawer.dart';
+import '../models/meal.dart';
 
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({Key? key}) : super(key: key);
   static const routename = '/home';
+
+  final List<Meal> favoritesList;
+
+  TabsScreen(this.favoritesList);
 
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Map<String, dynamic>> _pages = [
-    {
-      'page': CategoriesScreen(),
-      'heading': 'MealsApp',
-    },
-    {
-      'page': FavoritesScreen(),
-      'heading': 'Your Favorites',
-    },
-  ];
+  late List<Map<String, dynamic>> _pages;
 
   int _pageSelectedIndex = 0;
+
+  @override
+  void initState() {
+    // using this cause before build method widget. doesnt work, but inside init state it does
+    _pages = [
+      {
+        'page': CategoriesScreen(),
+        'heading': 'MealsApp',
+      },
+      {
+        'page': FavoritesScreen(widget.favoritesList),
+        'heading': 'Your Favorites',
+      },
+    ];
+    super.initState();
+  }
 
   void _selectPage(int index) {
     setState(() {

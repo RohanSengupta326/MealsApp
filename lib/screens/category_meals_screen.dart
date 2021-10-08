@@ -1,12 +1,26 @@
-// for one particular region's food show screen
+//  for one particular region's food show screen
 
 import 'package:flutter/material.dart';
-import '../widgets/meal_item.dart';
-import '../dummy_data.dart';
 
-class CategoryMealsScreen extends StatelessWidget {
+import '../widgets/meal_item.dart';
+import '../models/meal.dart';
+
+class CategoryMealsScreen extends StatefulWidget {
   static const routes = '/category-meals';
   // defining it here for less errors
+
+  final List<Meal> availableMeals;
+
+  CategoryMealsScreen(this.availableMeals);
+
+  @override
+  State<CategoryMealsScreen> createState() => _CategoryMealsScreenState();
+}
+
+class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
+  late List<Meal> categoryMeals;
+
+  late String catTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +29,11 @@ class CategoryMealsScreen extends StatelessWidget {
     // !. => null checker
 
     // accepting arguments from route method like this
-    final String catTitle = argsTaker['title'] as String;
-    final String catId = argsTaker['id'] as String;
+    catTitle = argsTaker['title'] as String;
+    final catId = argsTaker['id'] as String;
 
-    final categoryMeals = dummyMeals.where((meal) {
+    categoryMeals = widget.availableMeals.where((meal) {
       return meal.categories.contains(catId);
-      // checks id matches or not and returns true or false
     }).toList();
 
     return Scaffold(
@@ -46,3 +59,68 @@ class CategoryMealsScreen extends StatelessWidget {
     );
   }
 }
+
+/* import 'package:flutter/material.dart';
+
+import '../widgets/meal_item.dart';
+import '../models/meal.dart';
+
+class CategoryMealsScreen extends StatefulWidget {
+  static const routes = '/category-meals';
+
+  final List<Meal> availableMeals;
+
+  CategoryMealsScreen(this.availableMeals);
+
+  @override
+  _CategoryMealsScreenState createState() => _CategoryMealsScreenState();
+}
+
+class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
+  late String categoryTitle;
+  late List<Meal> displayedMeals;
+  var _loadedInitData = false;
+
+  @override
+  void didChangeDependencies() {
+    if (!_loadedInitData) {
+      final routeArgs =
+          ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+      categoryTitle = routeArgs['title'] as String;
+      final categoryId = routeArgs['id'] as String;
+      displayedMeals = widget.availableMeals.where((meal) {
+        return meal.categories.contains(categoryId);
+      }).toList();
+      _loadedInitData = true;
+    }
+    super.didChangeDependencies();
+  }
+
+  void _removeMeal(String mealId) {
+    setState(() {
+      displayedMeals.removeWhere((meal) => meal.id == mealId);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(categoryTitle),
+      ),
+      body: ListView.builder(
+        itemBuilder: (ctx, index) {
+          return MealItem(
+            id: displayedMeals[index].id,
+            title: displayedMeals[index].title,
+            imageUrl: displayedMeals[index].imageUrl,
+            duration: displayedMeals[index].duration,
+            affordability: displayedMeals[index].affordability,
+            complexity: displayedMeals[index].complexity,
+          );
+        },
+        itemCount: displayedMeals.length,
+      ),
+    );
+  }
+} */
