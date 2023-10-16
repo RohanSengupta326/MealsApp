@@ -116,7 +116,7 @@ class _TabsScreenState extends State<TabsScreen> {
         bottomNavigationBar: BottomNavigationBar(
           onTap: _selectPage,
           // this automatically sends the index to the function where the  page is
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           currentIndex: _pageSelectedIndex,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey,

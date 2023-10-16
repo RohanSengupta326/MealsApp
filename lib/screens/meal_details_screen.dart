@@ -93,8 +93,13 @@ class MealDetailScreen extends StatelessWidget {
                     child: ListView.builder(
                       itemBuilder: (ctx, index) => ListTile(
                         leading: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
                           radius: 15,
-                          child: Text('#'),
+                          child: Text(
+                            '#',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                         ),
                         title: Text(
                           selectedMeal.steps[index],
@@ -116,7 +121,7 @@ class MealDetailScreen extends StatelessWidget {
         child: Icon(
           favOrNot(Id) ? Icons.star : Icons.star_border,
         ),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
     );
   }

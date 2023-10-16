@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../screens/filters_screen.dart';
-import '../screens/meal_details_screen.dart';
-import '../screens/tabs_screen.dart';
-import '../screens/category_meals_screen.dart';
+import './screens/filters_screen.dart';
+import './screens/meal_details_screen.dart';
+import './screens/tabs_screen.dart';
+import './screens/category_meals_screen.dart';
 import 'dummy_data.dart';
-import '../models/meal.dart';
+import './models/meal.dart';
 
 void main() {
   runApp(MyApp());
@@ -70,13 +70,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = ThemeData();
     return MaterialApp(
       title: 'Meal',
       theme: ThemeData(
         primarySwatch: Colors.red,
-        primaryColor: Colors.red,
-        canvasColor: Colors.white,
+        accentColor: Colors.white,
+
+        // colorScheme: ColorScheme.fromSwatch().copyWith(
+        //   primary: Colors.red,
+        //   secondary: Colors.white,
+        // ),
         fontFamily: 'Raleway',
         appBarTheme: AppBarTheme(
           color: Colors.red,
@@ -84,19 +87,16 @@ class _MyAppState extends State<MyApp> {
         ),
         textTheme: ThemeData.light().textTheme.copyWith(
               bodyText1: TextStyle(
-                color: Color.fromRGBO(20, 51, 51, 1),
+                color: Colors.white,
               ),
               bodyText2: TextStyle(
-                color: Color.fromRGBO(20, 51, 51, 1),
+                color: Colors.black,
               ),
               headline1: TextStyle(
                   fontSize: 24,
                   fontFamily: 'RobotoCondensed',
                   fontWeight: FontWeight.bold),
             ),
-      ).copyWith(
-        // new way to add accentColor
-        colorScheme: theme.colorScheme.copyWith(secondary: Colors.white),
       ),
 
       // this is how you show a different screen
