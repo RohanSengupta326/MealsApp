@@ -81,7 +81,7 @@ class _TabsScreenState extends State<TabsScreen> {
     // using this cause before build method widget. doesnt work, but inside init state it does
     _pages = [
       {
-        'page': CategoriesScreen(),
+        'page': CategoriesScreen(), 
         'heading': 'MealsApp',
       },
       {
@@ -116,7 +116,7 @@ class _TabsScreenState extends State<TabsScreen> {
         bottomNavigationBar: BottomNavigationBar(
           onTap: _selectPage,
           // this automatically sends the index to the function where the  page is
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: Theme.of(context).primaryColor,
           currentIndex: _pageSelectedIndex,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey,

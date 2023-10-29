@@ -108,14 +108,20 @@ class MealItem extends StatelessWidget {
                     children: [
                       Icon(Icons.schedule),
                       SizedBox(width: 6),
-                      Text('$duration min'),
+                      Text(
+                        '$duration min',
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
                     ],
                   ),
                   Row(
                     children: [
                       Icon(Icons.work),
                       SizedBox(width: 6),
-                      Text(complexityText),
+                      Text(
+                        complexityText,
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
                       // using getter to convert enum number Complexity to string
                     ],
                   ),
@@ -123,7 +129,10 @@ class MealItem extends StatelessWidget {
                     children: [
                       Icon(Icons.attach_money),
                       SizedBox(width: 6),
-                      Text(affordabilityText),
+                      Text(
+                        affordabilityText,
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
                       // using getter to convert enum number Affordablity to string
                     ],
                   )

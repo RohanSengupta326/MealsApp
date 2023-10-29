@@ -13,8 +13,8 @@ class MealDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Id = ModalRoute.of(context)!.settings.arguments as String;
-    final selectedMeal = dummyMeals.firstWhere((meal) => meal.id == Id);
+    final id = ModalRoute.of(context)!.settings.arguments as String;
+    final selectedMeal = dummyMeals.firstWhere((meal) => meal.id == id);
 
     return Scaffold(
       appBar: AppBar(
@@ -117,11 +117,11 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => addremoveFav(Id),
+        onPressed: () => addremoveFav(id, context),
         child: Icon(
-          favOrNot(Id) ? Icons.star : Icons.star_border,
+          favOrNot(id) ? Icons.star : Icons.star_border,
         ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
     );
   }

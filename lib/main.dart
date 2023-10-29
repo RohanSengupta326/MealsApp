@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_proj5meal/screens/favorites_screen.dart';
 
 import './screens/filters_screen.dart';
 import './screens/meal_details_screen.dart';
@@ -50,12 +51,13 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void _addFavorite(String id) {
+  void _addFavorite(String id, BuildContext ctx) {
     final favIndex = _favoriteMeals.indexWhere((meal) => meal.id == id);
     if (favIndex >= 0) {
       setState(() {
         _favoriteMeals.removeAt(favIndex);
       });
+      Navigator.of(ctx).pushReplacementNamed('/');
     } else {
       setState(() {
         _favoriteMeals
@@ -74,7 +76,10 @@ class _MyAppState extends State<MyApp> {
       title: 'Meal',
       theme: ThemeData(
         primarySwatch: Colors.red,
-        accentColor: Colors.white,
+        // bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        //   backgroundColor: Colors.redAccent,
+        // ),
+        primaryColor: Colors.red,
 
         // colorScheme: ColorScheme.fromSwatch().copyWith(
         //   primary: Colors.red,
@@ -82,21 +87,24 @@ class _MyAppState extends State<MyApp> {
         // ),
         fontFamily: 'Raleway',
         appBarTheme: AppBarTheme(
-          color: Colors.red,
+          // color: Colors.red,
           elevation: 6,
         ),
-        textTheme: ThemeData.light().textTheme.copyWith(
-              bodyText1: TextStyle(
-                color: Colors.white,
-              ),
-              bodyText2: TextStyle(
-                color: Colors.black,
-              ),
-              headline1: TextStyle(
-                  fontSize: 24,
-                  fontFamily: 'RobotoCondensed',
-                  fontWeight: FontWeight.bold),
-            ),
+
+        textTheme: TextTheme().copyWith(
+          bodyText1: TextStyle(
+            fontSize: 24,
+            color: Colors.white,
+          ),
+          bodyText2: TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+          ),
+          headline1: TextStyle(
+              fontSize: 24,
+              fontFamily: 'RobotoCondensed',
+              fontWeight: FontWeight.bold),
+        ),
       ),
 
       // this is how you show a different screen
@@ -111,22 +119,22 @@ class _MyAppState extends State<MyApp> {
         MealDetailScreen.routeName: (ctx) =>
             MealDetailScreen(_addFavorite, _isFavorite),
         FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilters),
+        FavoritesScreen.routeName: (ctx) => FavoritesScreen(_favoriteMeals),
       },
       // adding routes
-
-      /* onGenerateRoute: (settings) {
+      // if no routes found then go to this route by default => onGenerateRoute
+      /*  onGenerateRoute: (settings) {
         return MaterialPageRoute(
           builder: (ctx) => CategoryMealsScreen(),
         );
       }, */
-      // if no routes found then go to this route by default => onGenerateRoute
 
+      // if no route is found go to this route, its like the 404 error route on websites
       /* onUnknownRoute: (settings) {
         return MaterialPageRoute(
           builder: (ctx) => CategoryMealsScreen(),
         );
       }, */
-      // if no route is found go to this route, its like the 404 error route on websites
     );
   }
 }

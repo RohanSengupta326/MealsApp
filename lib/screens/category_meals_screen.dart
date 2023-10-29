@@ -24,7 +24,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final argsTaker =
+    final Map<String, String> argsTaker =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     // !. => null checker
 

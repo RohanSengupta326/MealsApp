@@ -28,21 +28,20 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => selectCategory(context),
-      splashColor: Theme.of(context).colorScheme.secondary,
       borderRadius: BorderRadius.circular(15),
       child: Container(
         padding: EdgeInsets.all(15),
         child: Text(
           title,
-          style: TextStyle(fontSize: 20),
+          style: Theme.of(context).textTheme.bodyText2,
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              color.withOpacity(0.5),
+              color.withOpacity(0.3),
               // for transparency
               color,
-              // transaparency to solid color from begin to end,
+              // transaparency to solid color from begin to end, from 0.3 to color
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

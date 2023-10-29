@@ -4,6 +4,7 @@ import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 
 class FavoritesScreen extends StatelessWidget {
+  static String routeName = "/favorites";
   final List<Meal> favorites;
 
   FavoritesScreen(this.favorites);
