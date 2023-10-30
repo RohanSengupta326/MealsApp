@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_proj5meal/screens/tabs_screen.dart';
 
 import '../widgets/main_drawer.dart';
+
+import 'dart:developer';
 
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters';
 
-  final Function setfilters;
+  var _vegan;
+  var _vegeterian;
+  var _lactoseFree;
+  var _glutenFree;
 
-  FiltersScreen(this.setfilters);
+  final Function setfilters;
+  final Map<String, bool> filters;
+
+  FiltersScreen(this.setfilters, this.filters) {
+    // print(filters['vegan'].toString());
+    _vegan = filters['vegan'];
+    _vegeterian = filters['vegetarian'];
+    _lactoseFree = filters['lactose'];
+    _glutenFree = filters['gluten'];
+  }
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  var _vegan = false;
-
-  var _vegeterian = false;
-
-  var _lactoseFree = false;
-
-  var _glutenFree = false;
-
   Widget _buildSwitchListTile(
     String title,
     String description,
@@ -40,6 +47,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // print("==> ${widget.filters['vegan'].toString()}");
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Filters'),
@@ -47,13 +56,14 @@ class _FiltersScreenState extends State<FiltersScreen> {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () {
-              final selectedFilters = {
-                'gluten': _glutenFree,
-                'lactose': _lactoseFree,
-                'vegan': _vegan,
-                'vegetarian': _vegeterian,
+              final Map<String, bool> selectedFilters = {
+                'gluten': widget._glutenFree,
+                'lactose': widget._lactoseFree,
+                'vegan': widget._vegan,
+                'vegetarian': widget._vegeterian,
               };
               widget.setfilters(selectedFilters);
+              Navigator.of(context).pushReplacementNamed(TabsScreen.routename);
             },
           )
         ],
@@ -74,11 +84,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 _buildSwitchListTile(
                   'Gluten-free',
                   'Only include gluten-free meals.',
-                  _glutenFree,
+                  widget._glutenFree,
                   (newValue) {
                     setState(
                       () {
-                        _glutenFree = newValue;
+                        widget._glutenFree = newValue;
                       },
                     );
                   },
@@ -86,11 +96,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 _buildSwitchListTile(
                   'Lactose-free',
                   'Only include lactose-free meals.',
-                  _lactoseFree,
+                  widget._lactoseFree,
                   (newValue) {
                     setState(
                       () {
-                        _lactoseFree = newValue;
+                        widget._lactoseFree = newValue;
                       },
                     );
                   },
@@ -98,11 +108,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 _buildSwitchListTile(
                   'Vegetarian',
                   'Only include vegetarian meals.',
-                  _vegeterian,
+                  widget._vegeterian,
                   (newValue) {
                     setState(
                       () {
-                        _vegeterian = newValue;
+                        widget._vegeterian = newValue;
                       },
                     );
                   },
@@ -110,11 +120,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 _buildSwitchListTile(
                   'Vegan',
                   'Only include vegan meals.',
-                  _vegan,
+                  widget._vegan,
                   (newValue) {
                     setState(
                       () {
-                        _vegan = newValue;
+                        widget._vegan = newValue;
                       },
                     );
                   },

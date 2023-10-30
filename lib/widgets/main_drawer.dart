@@ -7,7 +7,8 @@ import '../screens/filters_screen.dart';
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
 
-  Widget buildListTile(String title, IconData icon, VoidCallback filtered) {
+  Widget buildListTile(
+      String title, IconData icon, VoidCallback filtered, BuildContext ctx) {
     return ListTile(
       leading: Icon(
         icon,
@@ -15,7 +16,7 @@ class MainDrawer extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(fontSize: 16),
+        style: Theme.of(ctx).textTheme.bodyText2,
       ),
       onTap: filtered,
     );
@@ -29,7 +30,7 @@ class MainDrawer extends StatelessWidget {
           Container(
             height: 100,
             width: double.infinity,
-            color: Theme.of(context).primaryColor.withOpacity(0.6),
+            color: Theme.of(context).primaryColor,
             padding: EdgeInsets.symmetric(vertical: 35),
             margin: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).padding.top),
@@ -46,10 +47,10 @@ class MainDrawer extends StatelessWidget {
           buildListTile('Meals', Icons.restaurant, () {
             Navigator.of(context).pushReplacementNamed(TabsScreen.routename);
             // using pushNamed keep stacking the same two pages which can cause problem in memory so use pushReplacementNamed
-          }),
+          }, context),
           buildListTile('Filters', Icons.settings, () {
             Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
-          }),
+          }, context),
         ],
       ),
     );

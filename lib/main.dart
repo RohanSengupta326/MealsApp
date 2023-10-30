@@ -118,7 +118,7 @@ class _MyAppState extends State<MyApp> {
             CategoryMealsScreen(_availableMeals),
         MealDetailScreen.routeName: (ctx) =>
             MealDetailScreen(_addFavorite, _isFavorite),
-        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilters),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilters, _filters),
         FavoritesScreen.routeName: (ctx) => FavoritesScreen(_favoriteMeals),
       },
       // adding routes

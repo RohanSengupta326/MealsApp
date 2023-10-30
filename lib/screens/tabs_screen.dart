@@ -61,7 +61,7 @@ import '../widgets/main_drawer.dart';
 import '../models/meal.dart';
 
 class TabsScreen extends StatefulWidget {
-  static const routename = '/home';
+  static const routename = '/';
 
   final List<Meal> favoritesList;
 
